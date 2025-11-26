@@ -1,18 +1,20 @@
 package co2123.streetfood.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 @Entity
 public class Review {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String reviewerName;
     private int rating;
     private String comment;
     private LocalDateTime reviewDate;
 
+    @ManyToOne
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
     public int getId() {

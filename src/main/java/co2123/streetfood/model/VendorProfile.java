@@ -1,11 +1,12 @@
 package co2123.streetfood.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class VendorProfile {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String bio;
     private String socialMediaHandle;

@@ -4,20 +4,35 @@ import jakarta.persistence.*;
 
 import java.util.List;
 @Entity
+@Table(name = "vendor")
 public class Vendor {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String location;
     private String cuisineType;
 
+    @OneToMany(mappedBy = "vendor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Dish> dishes;
+
     @OneToOne
     @JoinColumn(name = "profile_id")
     private VendorProfile profile;
+
+    @OneToMany(mappedBy ="vendor", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     private List<Photo> photos;
 
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     private List<Award> awards;
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
 
     public int getId() {
         return id;
@@ -65,14 +80,6 @@ public class Vendor {
 
     public void setProfile(VendorProfile profile) {
         this.profile = profile;
-    }
-
-    public List<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
     }
 
     public List<Award> getAwards() {

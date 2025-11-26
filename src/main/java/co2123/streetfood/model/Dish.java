@@ -1,21 +1,29 @@
 package co2123.streetfood.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
 
 import java.util.List;
+
 @Entity
 public class Dish {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String description;
     private int spiceLevel;
     private double price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
+
+    @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
     private List<Review> reviews;
+
+    @ManyToMany
+    @JoinTable(name = "dish_tags", joinColumns = @JoinColumn(name = "dish_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
 
     public int getId() {
