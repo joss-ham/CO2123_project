@@ -1,6 +1,8 @@
 package co2123.streetfood;
 
 import co2123.streetfood.model.*;
+import co2123.streetfood.repo.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +16,11 @@ import java.util.List;
 @SpringBootApplication
 public class StreetfoodApplication implements CommandLineRunner {
 
+    @Autowired private AwardRepository awardRepository;
+    @Autowired private PhotoRepository photoRepository;
+    @Autowired private ReviewRepository reviewRepository;
+    @Autowired private TagRepository tagRepository;
+    @Autowired private VendorRepository vendorRepository;
 
     public static List<Award> awardList = new ArrayList<>();
     public static List<Dish> dishList = new ArrayList<>();
@@ -29,6 +36,8 @@ public class StreetfoodApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        /*
+        System.out.println("running");
         //Creating 1 VendorProfile
         VendorProfile profile = new VendorProfile();
         profile.setId(1);
@@ -389,5 +398,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         vendor.setAwards(new ArrayList<>(Arrays.asList(award1,award2)));
         vendor2.setAwards(new ArrayList<>(List.of(award3)));
         vendor3.setAwards(new ArrayList<>(List.of(award4)));
+
+         */
     }
 }

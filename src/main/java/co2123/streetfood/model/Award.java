@@ -3,7 +3,6 @@ import jakarta.persistence.*;
 @Entity
 public class Award {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private int year;

@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 @Entity
 public class Photo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String url;
     private String description;
