@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Photo {
-    @Id
+    @Id@GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String url;
     private String description;

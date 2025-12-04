@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "vendor")
 public class Vendor {
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String name;
     private String location;
@@ -15,7 +15,7 @@ public class Vendor {
     @OneToMany(mappedBy = "vendor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Dish> dishes;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id")
     private VendorProfile profile;
 

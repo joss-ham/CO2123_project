@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 @Entity
 public class Review {
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String reviewerName;
     private int rating;
     private String comment;
     private LocalDateTime reviewDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dish_id")
     private Dish dish;
 

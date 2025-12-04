@@ -2,7 +2,7 @@ package co2123.streetfood.model;
 import jakarta.persistence.*;
 @Entity
 public class Award {
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String title;
     private int year;
