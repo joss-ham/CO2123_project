@@ -71,7 +71,7 @@ public class AddEditController {
             return "redirect:/admin";
         }
 
-        if(foundVendor.getProfile() == null){
+       /* if(foundVendor.getProfile() == null){
             profile.setId(StreetfoodApplication.vendorprofileList.size()+1);
             foundVendor.setProfile(profile);
             StreetfoodApplication.vendorprofileList.add(profile);
@@ -82,6 +82,8 @@ public class AddEditController {
             foundVendor.getProfile().setSocialMediaHandle(profile.getSocialMediaHandle());
             foundVendor.getProfile().setWebsite(profile.getWebsite());
         }
+
+        */
 
         model.addAttribute("vendor", foundVendor);
         return "redirect:/vendor?id=" + id;
