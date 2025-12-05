@@ -31,17 +31,13 @@ public class StreetfoodApplication implements CommandLineRunner {
     public static List<Vendor> vendorList = new ArrayList<>();
     public static List<VendorProfile> vendorprofileList = new ArrayList<>();
 
-    public static void main(String[] args) {
-        SpringApplication.run(StreetfoodApplication.class, args);
+    public static void main(String[] args) {SpringApplication.run(StreetfoodApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("running");
-
         //Creating 1 VendorProfile
-
         VendorProfile profile = new VendorProfile();
 
         profile.setBio("Serving the best street food since 2010.");
@@ -57,25 +53,23 @@ public class StreetfoodApplication implements CommandLineRunner {
         vendor.setLocation("University Road");
         vendor.setCuisineType("Fusion");
         vendor.setProfile(profile);
-        vendor = vendorRepository.save(vendor);
+
+
 
         //Creating 2 Tags
 
-
         Tag spicy = new Tag();
         spicy.setName("Spicy Challenge");
-       spicy = tagRepository.save(spicy);
+        spicy = tagRepository.save(spicy);
 
         Tag hiddenGem = new Tag();
         hiddenGem.setName("Hidden Gem");
         hiddenGem = tagRepository.save(hiddenGem);
-
         tagList.add(spicy);
         tagList.add(hiddenGem);
 
         //Creating 2 Dishes then saving the vendor with dishes
         Dish noodles = new Dish();
-
         noodles.setName("Fire Noodles");
         noodles.setDescription("Extremely spicy noodles for the brave.");
         noodles.setSpiceLevel(5);
@@ -88,7 +82,6 @@ public class StreetfoodApplication implements CommandLineRunner {
 
 
         Dish dumplings = new Dish();
-      ;
         dumplings.setName("Secret Dumplings");
         dumplings.setDescription("Delicate dumplings with a secret filling.");
         dumplings.setSpiceLevel(2);
@@ -100,13 +93,13 @@ public class StreetfoodApplication implements CommandLineRunner {
 
         vendor.setDishes(new ArrayList<>());
         vendor.getDishes().add(noodles);
+
         vendor.getDishes().add(dumplings);
-        vendorList.add(vendor);
         vendor = vendorRepository.save(vendor);
+        vendorList.add(vendor);
 
         //Creating 2 reviews
         Review review1 = new Review();
-
         review1.setReviewerName("Sofia");
         review1.setRating(5);
         review1.setComment("So spicy, so good!");
@@ -122,19 +115,18 @@ public class StreetfoodApplication implements CommandLineRunner {
         review2.setReviewDate(LocalDateTime.now());
         review2.setDish(dumplings);
         review2 =  reviewRepository.save(review2);
+
         reviewList.add(review1);
         reviewList.add(review2);
 
         //Creating 2 Photos
         Photo photo1 = new Photo();
-
         photo1.setUrl("noodles.jpg");
         photo1.setDescription("A bowl of fire noodles.");
         photo1.setVendor(vendor);
         photo1 = photoRepository.save(photo1);
 
         Photo photo2 = new Photo();
-
         photo2.setUrl("dumplings.jpg");
         photo2.setDescription("Steaming hot dumplings.");
         photo2.setVendor(vendor);
@@ -175,7 +167,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         vendor2.setLocation("Leicester Market");
         vendor2.setCuisineType("Fusion");
         vendor2.setProfile(profile2);
-        vendor2 = vendorRepository.save(vendor2);
+
 
         Tag localLegend = new Tag();
         localLegend.setName("Local Legend");
@@ -222,10 +214,12 @@ public class StreetfoodApplication implements CommandLineRunner {
 
         vendor2.setDishes(new ArrayList<>());
         vendor2.getDishes().add(samosa);
+
         vendor2.getDishes().add(porkPie);
+
         vendor2.getDishes().add(toastie);
-        vendorList.add(vendor2);
         vendor2 = vendorRepository.save(vendor2);
+        vendorList.add(vendor2);
 
         Review review3 = new Review();
 
@@ -307,7 +301,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         vendor3.setLocation("New Walk");
         vendor3.setCuisineType("French Desserts");
         vendor3.setProfile(profile3);
-        vendor3 = vendorRepository.save(vendor3);
+
 
         Tag sweet = new Tag();
         sweet.setName("Sweet");
@@ -357,7 +351,9 @@ public class StreetfoodApplication implements CommandLineRunner {
 
         vendor3.setDishes(new ArrayList<>());
         vendor3.getDishes().add(eclair);
+
         vendor3.getDishes().add(tarteCitron);
+
         vendor3.getDishes().add(madeleine);
         vendor3 = vendorRepository.save(vendor3);
 
