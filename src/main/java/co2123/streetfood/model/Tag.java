@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 @Entity
 public class Tag {
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String name;
 

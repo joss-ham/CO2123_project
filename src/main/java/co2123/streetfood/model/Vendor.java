@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "vendor")
 public class Vendor {
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String name;
     private String location;
@@ -22,7 +22,7 @@ public class Vendor {
     @OneToMany(mappedBy ="vendor", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     private List<Photo> photos;
 
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.REMOVE,  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER)
     private List<Award> awards;
 
     public List<Photo> getPhotos() {

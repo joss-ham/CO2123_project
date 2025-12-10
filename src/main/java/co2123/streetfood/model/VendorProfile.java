@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class VendorProfile {
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String bio;
     private String socialMediaHandle;
