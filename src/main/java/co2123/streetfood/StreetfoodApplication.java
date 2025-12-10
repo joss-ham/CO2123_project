@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Transactional
+
 @SpringBootApplication
 public class StreetfoodApplication implements CommandLineRunner {
 
@@ -45,6 +45,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         vendor.setLocation("University Road");
         vendor.setCuisineType("Fusion");
         vendor.setProfile(profile);
+        vendor.setDishes(new ArrayList<>());
         vendor = vendorRepository.save(vendor);
 
         //Creating 2 Tags
@@ -65,6 +66,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         noodles.setSpiceLevel(5);
         noodles.setPrice(8.99);
         noodles.setTags(new ArrayList<>());
+        noodles.setReviews(new ArrayList<>());
         noodles.getTags().add(spicy);
         noodles.setVendor(vendor);
         vendor.getDishes().add(noodles);
@@ -75,6 +77,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         dumplings.setSpiceLevel(2);
         dumplings.setPrice(6.55);
         dumplings.setTags(new ArrayList<>());
+        dumplings.setReviews(new ArrayList<>());
         dumplings.getTags().add(hiddenGem);
         dumplings.setVendor(vendor);
         vendor.getDishes().add(dumplings);
@@ -148,6 +151,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         vendor2.setLocation("Leicester Market");
         vendor2.setCuisineType("Fusion");
         vendor2.setProfile(profile2);
+        vendor2.setDishes(new ArrayList<>());
         vendor2 = vendorRepository.save(vendor2);
 
         Tag localLegend = new Tag();
@@ -166,6 +170,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         samosa.setSpiceLevel(3);
         samosa.setPrice(4.99);
         samosa.setTags(new ArrayList<>());
+        samosa.setReviews(new ArrayList<>());
         samosa.getTags().add(spicy);
         samosa.getTags().add(vegetarian);
         samosa.setVendor(vendor2);
@@ -178,6 +183,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         porkPie.setSpiceLevel(1);
         porkPie.setPrice(2.99);
         porkPie.setTags(new ArrayList<>());
+        porkPie.setReviews(new ArrayList<>());
         porkPie.getTags().add(localLegend);
         porkPie.setVendor(vendor2);
         vendor2.getDishes().add(porkPie);
@@ -189,6 +195,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         toastie.setSpiceLevel(1);
         toastie.setPrice(3.75);
         toastie.setTags(new ArrayList<>());
+        toastie.setReviews(new ArrayList<>());
         toastie.getTags().add(vegetarian);
         toastie.setVendor(vendor2);
         vendor2.getDishes().add(toastie);
@@ -268,6 +275,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         vendor3.setLocation("New Walk");
         vendor3.setCuisineType("French Desserts");
         vendor3.setProfile(profile3);
+        vendor3.setDishes(new ArrayList<>());
         vendor3 = vendorRepository.save(vendor3);
 
 
@@ -286,6 +294,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         eclair.setSpiceLevel(0);
         eclair.setPrice(3.15);
         eclair.setTags(new ArrayList<>());
+        eclair.setReviews(new ArrayList<>());
         eclair.getTags().add(sweet);
         eclair.getTags().add(classic);
         eclair.setVendor(vendor3);
@@ -298,6 +307,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         tarteCitron.setSpiceLevel(0);
         tarteCitron.setPrice(3.85);
         tarteCitron.setTags(new ArrayList<>());
+        tarteCitron.setReviews(new ArrayList<>());
         tarteCitron.getTags().add(sweet);
         tarteCitron.setVendor(vendor3);
         vendor3.getDishes().add(tarteCitron);
@@ -308,6 +318,7 @@ public class StreetfoodApplication implements CommandLineRunner {
         madeleine.setSpiceLevel(0);
         madeleine.setPrice(1.45);
         madeleine.setTags(new ArrayList<>());
+        madeleine.setReviews(new ArrayList<>());
         madeleine.getTags().add(classic);
         madeleine.setVendor(vendor3);
         vendor3.getDishes().add(madeleine);
