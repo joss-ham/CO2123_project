@@ -1,6 +1,8 @@
 package co2123.streetfood.controller;
 
 import co2123.streetfood.StreetfoodApplication;
+import co2123.streetfood.repo.VendorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import co2123.streetfood.model.Dish;
 import co2123.streetfood.model.Vendor;
 import org.springframework.stereotype.Controller;
@@ -14,49 +16,44 @@ import java.util.List;
 @Controller
 public class FilterController {
 
-    public List<Vendor> method1(String search){
-        List<Vendor> vendors = new ArrayList<Vendor>();
-        for(Vendor a : StreetfoodApplication.vendorList){
-            if(a.getName().contains(search)){
-                vendors.add(a);
-            }
-        }
-        return vendors;
-    }
+    @Autowired
+    private VendorRepository vendorRepository;
 
     @GetMapping("/search1")
     public String search1(@RequestParam String vendor, Model model) {
-        List<Vendor> list = method1(vendor);
-        if(list.isEmpty()){
-            model.addAttribute("vendors", StreetfoodApplication.vendorList);
+        List<Vendor> list;
+
+        if (vendor != null && !vendor.trim().isEmpty()) {
+            list = vendorRepository.findByNameContainingIgnoreCase(vendor);
         } else {
-            model.addAttribute("vendors", list);
+            list = (List<Vendor>) vendorRepository.findAll();
         }
+
+        if(list.isEmpty()){
+            list = (List<Vendor>) vendorRepository.findAll();
+        }
+
+        model.addAttribute("vendors", list);
         return "vendors";
     }
 
-    public List<Vendor> method2(String search){
-        List<Vendor> vendors = new ArrayList<>();
-        for(Vendor a : StreetfoodApplication.vendorList){
-            for(Dish d : a.getDishes()){
-                if(d.getName().contains(search) && !vendors.contains(a)){
-                    vendors.add(a);
-
-                }
-            }
-        }
-        return vendors;
-    }
 
     @GetMapping("/search2")
     public String search2(@RequestParam String dish, Model model) {
-        List<Vendor> list = method2(dish);
-        if(list.isEmpty()){
-            model.addAttribute("vendors", StreetfoodApplication.vendorList);
+        List<Vendor> list;
+
+        if (dish != null && !dish.trim().isEmpty()) {
+            list = vendorRepository.findByDishesNameContainingIgnoreCase(dish);
         } else {
-            model.addAttribute("vendors", list);
+            list = (List<Vendor>) vendorRepository.findAll();
         }
+
+        if(list.isEmpty()){
+            list = (List<Vendor>) vendorRepository.findAll();
+        }
+
+        model.addAttribute("vendors", list);
         return "vendors";
     }
-
 }
+

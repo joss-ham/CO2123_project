@@ -1,12 +1,18 @@
 package co2123.streetfood.controller;
 
-import co2123.streetfood.StreetfoodApplication;
 import co2123.streetfood.model.Vendor;
+import co2123.streetfood.repo.VendorRepository;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 public class VendorValidator implements Validator {
+
+    private final VendorRepository vendorRepository;
+
+    public VendorValidator(VendorRepository vendorRepository) {
+        this.vendorRepository = vendorRepository;
+    }
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -25,13 +31,15 @@ public class VendorValidator implements Validator {
             errors.rejectValue("cuisineType", "", "Cuisine type must be 50 characters or fewer.");
         }
 
-        for(Vendor a : StreetfoodApplication.vendorList){
-            if(a.getName().equals(vendor.getName())){
-                errors.rejectValue("name", "", "Vendor name already exists.");
+        if (vendor.getName() != null && !vendor.getName().trim().isEmpty()) {
+            Vendor existingVendor = vendorRepository.findByName(vendor.getName());
+
+
+            if (existingVendor != null) {
+                if (vendor.getId() == 0 || existingVendor.getId() != vendor.getId()) {
+                    errors.rejectValue("name", "", "Vendor name already exists.");
+                }
             }
         }
-
-
-
     }
 }

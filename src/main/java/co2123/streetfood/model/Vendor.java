@@ -22,7 +22,7 @@ public class Vendor {
     @OneToMany(mappedBy ="vendor", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     private List<Photo> photos;
 
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.REMOVE,  fetch = FetchType.LAZY)
     private List<Award> awards;
 
     public List<Photo> getPhotos() {
